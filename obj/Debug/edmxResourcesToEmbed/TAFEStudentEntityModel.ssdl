@@ -1,0 +1,582 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TAFEStudentManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cluster">
+    <Key>
+      <PropertyRef Name="ClusterId" />
+    </Key>
+    <Property Name="ClusterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClusterName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Duration" Type="smallint" />
+    <Property Name="StartDate" Type="date" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="CourseDescription" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="CourseCluster">
+    <Key>
+      <PropertyRef Name="CourseId" />
+      <PropertyRef Name="ClusterId" />
+    </Key>
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="ClusterId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseClusterUnit">
+    <Key>
+      <PropertyRef Name="CourseId" />
+      <PropertyRef Name="ClusterId" />
+      <PropertyRef Name="UnitId" />
+    </Key>
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="ClusterId" Type="int" Nullable="false" />
+    <Property Name="UnitId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseEnrolment">
+    <Key>
+      <PropertyRef Name="StudentId" />
+      <PropertyRef Name="LocationId" />
+      <PropertyRef Name="SemesterId" />
+      <PropertyRef Name="CourseId" />
+      <PropertyRef Name="EnrolmentId" />
+    </Key>
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="int" Nullable="false" />
+    <Property Name="SemesterId" Type="int" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="EnrolmentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseLocation">
+    <Key>
+      <PropertyRef Name="CourseId" />
+      <PropertyRef Name="LocationId" />
+    </Key>
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseSemester">
+    <Key>
+      <PropertyRef Name="LocationId" />
+      <PropertyRef Name="SemesterId" />
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="LocationId" Type="int" Nullable="false" />
+    <Property Name="SemesterId" Type="int" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseTeacher">
+    <Key>
+      <PropertyRef Name="TeacherId" />
+      <PropertyRef Name="LocationId" />
+      <PropertyRef Name="SemesterId" />
+      <PropertyRef Name="CourseId" />
+      <PropertyRef Name="ClusterId" />
+    </Key>
+    <Property Name="TeacherId" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="int" Nullable="false" />
+    <Property Name="SemesterId" Type="int" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="ClusterId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Enrolment">
+    <Key>
+      <PropertyRef Name="EnrolmentId" />
+    </Key>
+    <Property Name="EnrolmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EnrolmentName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="LocationId" />
+    </Key>
+    <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocationName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoginUser">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserType" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Semester">
+    <Key>
+      <PropertyRef Name="SemesterId" />
+    </Key>
+    <Property Name="SemesterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SemesterName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="Gender" Type="char" MaxLength="10" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Mobile" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="StudentEnrolment">
+    <Key>
+      <PropertyRef Name="StudentId" />
+      <PropertyRef Name="EnrolmentId" />
+      <PropertyRef Name="LocationId" />
+      <PropertyRef Name="SemesterId" />
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="EnrolmentId" Type="int" Nullable="false" />
+    <Property Name="EnrolmentDate" Type="datetime" />
+    <Property Name="LocationId" Type="int" Nullable="false" />
+    <Property Name="SemesterId" Type="int" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="20" />
+    <Property Name="Fees" Type="int" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="TeacherId" />
+    </Key>
+    <Property Name="TeacherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="50" />
+    <Property Name="Gender" Type="char" MaxLength="8" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="UnitId" />
+    </Key>
+    <Property Name="UnitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UnitName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UnitType" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CourseCluster_Cluster">
+    <End Role="Cluster" Type="Self.Cluster" Multiplicity="1" />
+    <End Role="CourseCluster" Type="Self.CourseCluster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cluster">
+        <PropertyRef Name="ClusterId" />
+      </Principal>
+      <Dependent Role="CourseCluster">
+        <PropertyRef Name="ClusterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseCluster_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CourseCluster" Type="Self.CourseCluster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="CourseCluster">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseClusterUnit_Cluster">
+    <End Role="Cluster" Type="Self.Cluster" Multiplicity="1" />
+    <End Role="CourseClusterUnit" Type="Self.CourseClusterUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cluster">
+        <PropertyRef Name="ClusterId" />
+      </Principal>
+      <Dependent Role="CourseClusterUnit">
+        <PropertyRef Name="ClusterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseClusterUnit_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CourseClusterUnit" Type="Self.CourseClusterUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="CourseClusterUnit">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseClusterUnit_Unit">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+    <End Role="CourseClusterUnit" Type="Self.CourseClusterUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="UnitId" />
+      </Principal>
+      <Dependent Role="CourseClusterUnit">
+        <PropertyRef Name="UnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseEnrolment_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CourseEnrolment" Type="Self.CourseEnrolment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="CourseEnrolment">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseEnrolment_Enrolment">
+    <End Role="Enrolment" Type="Self.Enrolment" Multiplicity="1" />
+    <End Role="CourseEnrolment" Type="Self.CourseEnrolment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enrolment">
+        <PropertyRef Name="EnrolmentId" />
+      </Principal>
+      <Dependent Role="CourseEnrolment">
+        <PropertyRef Name="EnrolmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseEnrolment_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="CourseEnrolment" Type="Self.CourseEnrolment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="LocationId" />
+      </Principal>
+      <Dependent Role="CourseEnrolment">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseEnrolment_Semester">
+    <End Role="Semester" Type="Self.Semester" Multiplicity="1" />
+    <End Role="CourseEnrolment" Type="Self.CourseEnrolment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Semester">
+        <PropertyRef Name="SemesterId" />
+      </Principal>
+      <Dependent Role="CourseEnrolment">
+        <PropertyRef Name="SemesterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseEnrolment_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="CourseEnrolment" Type="Self.CourseEnrolment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="CourseEnrolment">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseLocation_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CourseLocation" Type="Self.CourseLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="CourseLocation">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseLocation_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="CourseLocation" Type="Self.CourseLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="LocationId" />
+      </Principal>
+      <Dependent Role="CourseLocation">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseSemester_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CourseSemester" Type="Self.CourseSemester" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="CourseSemester">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseSemester_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="CourseSemester" Type="Self.CourseSemester" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="LocationId" />
+      </Principal>
+      <Dependent Role="CourseSemester">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseSemester_Semester">
+    <End Role="Semester" Type="Self.Semester" Multiplicity="1" />
+    <End Role="CourseSemester" Type="Self.CourseSemester" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Semester">
+        <PropertyRef Name="SemesterId" />
+      </Principal>
+      <Dependent Role="CourseSemester">
+        <PropertyRef Name="SemesterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseTeacher_Cluster">
+    <End Role="Cluster" Type="Self.Cluster" Multiplicity="1" />
+    <End Role="CourseTeacher" Type="Self.CourseTeacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cluster">
+        <PropertyRef Name="ClusterId" />
+      </Principal>
+      <Dependent Role="CourseTeacher">
+        <PropertyRef Name="ClusterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseTeacher_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CourseTeacher" Type="Self.CourseTeacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="CourseTeacher">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseTeacher_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="CourseTeacher" Type="Self.CourseTeacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="LocationId" />
+      </Principal>
+      <Dependent Role="CourseTeacher">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseTeacher_Semester">
+    <End Role="Semester" Type="Self.Semester" Multiplicity="1" />
+    <End Role="CourseTeacher" Type="Self.CourseTeacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Semester">
+        <PropertyRef Name="SemesterId" />
+      </Principal>
+      <Dependent Role="CourseTeacher">
+        <PropertyRef Name="SemesterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseTeacher_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="CourseTeacher" Type="Self.CourseTeacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="TeacherId" />
+      </Principal>
+      <Dependent Role="CourseTeacher">
+        <PropertyRef Name="TeacherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentEnrolment_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="StudentEnrolment" Type="Self.StudentEnrolment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="StudentEnrolment">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentEnrolment_Enrolment">
+    <End Role="Enrolment" Type="Self.Enrolment" Multiplicity="1" />
+    <End Role="StudentEnrolment" Type="Self.StudentEnrolment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enrolment">
+        <PropertyRef Name="EnrolmentId" />
+      </Principal>
+      <Dependent Role="StudentEnrolment">
+        <PropertyRef Name="EnrolmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentEnrolment_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="StudentEnrolment" Type="Self.StudentEnrolment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="LocationId" />
+      </Principal>
+      <Dependent Role="StudentEnrolment">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentEnrolment_Semester">
+    <End Role="Semester" Type="Self.Semester" Multiplicity="1" />
+    <End Role="StudentEnrolment" Type="Self.StudentEnrolment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Semester">
+        <PropertyRef Name="SemesterId" />
+      </Principal>
+      <Dependent Role="StudentEnrolment">
+        <PropertyRef Name="SemesterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentEnrolment_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="StudentEnrolment" Type="Self.StudentEnrolment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="StudentEnrolment">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TAFEStudentManagementModelStoreContainer">
+    <EntitySet Name="Cluster" EntityType="Self.Cluster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseCluster" EntityType="Self.CourseCluster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseClusterUnit" EntityType="Self.CourseClusterUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseEnrolment" EntityType="Self.CourseEnrolment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseLocation" EntityType="Self.CourseLocation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseSemester" EntityType="Self.CourseSemester" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseTeacher" EntityType="Self.CourseTeacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Enrolment" EntityType="Self.Enrolment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoginUser" EntityType="Self.LoginUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Semester" EntityType="Self.Semester" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentEnrolment" EntityType="Self.StudentEnrolment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CourseCluster_Cluster" Association="Self.FK_CourseCluster_Cluster">
+      <End Role="Cluster" EntitySet="Cluster" />
+      <End Role="CourseCluster" EntitySet="CourseCluster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseCluster_Course" Association="Self.FK_CourseCluster_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="CourseCluster" EntitySet="CourseCluster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseClusterUnit_Cluster" Association="Self.FK_CourseClusterUnit_Cluster">
+      <End Role="Cluster" EntitySet="Cluster" />
+      <End Role="CourseClusterUnit" EntitySet="CourseClusterUnit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseClusterUnit_Course" Association="Self.FK_CourseClusterUnit_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="CourseClusterUnit" EntitySet="CourseClusterUnit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseClusterUnit_Unit" Association="Self.FK_CourseClusterUnit_Unit">
+      <End Role="Unit" EntitySet="Unit" />
+      <End Role="CourseClusterUnit" EntitySet="CourseClusterUnit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseEnrolment_Course" Association="Self.FK_CourseEnrolment_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="CourseEnrolment" EntitySet="CourseEnrolment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseEnrolment_Enrolment" Association="Self.FK_CourseEnrolment_Enrolment">
+      <End Role="Enrolment" EntitySet="Enrolment" />
+      <End Role="CourseEnrolment" EntitySet="CourseEnrolment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseEnrolment_Location" Association="Self.FK_CourseEnrolment_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="CourseEnrolment" EntitySet="CourseEnrolment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseEnrolment_Semester" Association="Self.FK_CourseEnrolment_Semester">
+      <End Role="Semester" EntitySet="Semester" />
+      <End Role="CourseEnrolment" EntitySet="CourseEnrolment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseEnrolment_Student" Association="Self.FK_CourseEnrolment_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="CourseEnrolment" EntitySet="CourseEnrolment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseLocation_Course" Association="Self.FK_CourseLocation_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="CourseLocation" EntitySet="CourseLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseLocation_Location" Association="Self.FK_CourseLocation_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="CourseLocation" EntitySet="CourseLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseSemester_Course" Association="Self.FK_CourseSemester_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="CourseSemester" EntitySet="CourseSemester" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseSemester_Location" Association="Self.FK_CourseSemester_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="CourseSemester" EntitySet="CourseSemester" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseSemester_Semester" Association="Self.FK_CourseSemester_Semester">
+      <End Role="Semester" EntitySet="Semester" />
+      <End Role="CourseSemester" EntitySet="CourseSemester" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseTeacher_Cluster" Association="Self.FK_CourseTeacher_Cluster">
+      <End Role="Cluster" EntitySet="Cluster" />
+      <End Role="CourseTeacher" EntitySet="CourseTeacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseTeacher_Course" Association="Self.FK_CourseTeacher_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="CourseTeacher" EntitySet="CourseTeacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseTeacher_Location" Association="Self.FK_CourseTeacher_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="CourseTeacher" EntitySet="CourseTeacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseTeacher_Semester" Association="Self.FK_CourseTeacher_Semester">
+      <End Role="Semester" EntitySet="Semester" />
+      <End Role="CourseTeacher" EntitySet="CourseTeacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseTeacher_Teacher" Association="Self.FK_CourseTeacher_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="CourseTeacher" EntitySet="CourseTeacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentEnrolment_Course" Association="Self.FK_StudentEnrolment_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="StudentEnrolment" EntitySet="StudentEnrolment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentEnrolment_Enrolment" Association="Self.FK_StudentEnrolment_Enrolment">
+      <End Role="Enrolment" EntitySet="Enrolment" />
+      <End Role="StudentEnrolment" EntitySet="StudentEnrolment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentEnrolment_Location" Association="Self.FK_StudentEnrolment_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="StudentEnrolment" EntitySet="StudentEnrolment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentEnrolment_Semester" Association="Self.FK_StudentEnrolment_Semester">
+      <End Role="Semester" EntitySet="Semester" />
+      <End Role="StudentEnrolment" EntitySet="StudentEnrolment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentEnrolment_Student" Association="Self.FK_StudentEnrolment_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentEnrolment" EntitySet="StudentEnrolment" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

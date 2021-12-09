@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3b684755b6e742d79b6a7d57edc247d1" Name="Diagram1">
+        <EntityTypeShape EntityType="TAFEStudentManagementModel.Cluster" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAFEStudentManagementModel.Course" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAFEStudentManagementModel.CourseClusterUnit" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAFEStudentManagementModel.Location" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAFEStudentManagementModel.LoginUser" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAFEStudentManagementModel.Semester" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAFEStudentManagementModel.Student" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAFEStudentManagementModel.StudentEnrolment" Width="1.5" PointX="7.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAFEStudentManagementModel.Teacher" Width="1.5" PointX="8.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAFEStudentManagementModel.TeacherEnrolment" Width="1.5" PointX="10.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAFEStudentManagementModel.Unit" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="TAFEStudentManagementModel.FK_CourseClusterUnit_Cluster" ManuallyRouted="false" />
+        <AssociationConnector Association="TAFEStudentManagementModel.FK_CourseTeacher_Cluster" ManuallyRouted="false" />
+        <AssociationConnector Association="TAFEStudentManagementModel.FK_CourseClusterUnit_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="TAFEStudentManagementModel.FK_CourseTeacher_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="TAFEStudentManagementModel.FK_StudentEnrolment_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="TAFEStudentManagementModel.FK_CourseClusterUnit_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="TAFEStudentManagementModel.FK_CourseTeacher_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="TAFEStudentManagementModel.FK_StudentEnrolment_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="TAFEStudentManagementModel.FK_CourseTeacher_Semester" ManuallyRouted="false" />
+        <AssociationConnector Association="TAFEStudentManagementModel.FK_StudentEnrolment_Semester" ManuallyRouted="false" />
+        <AssociationConnector Association="TAFEStudentManagementModel.FK_StudentEnrolment_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="TAFEStudentManagementModel.FK_CourseTeacher_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="TAFEStudentManagementModel.CourseCluster" ManuallyRouted="false" />
+        <AssociationConnector Association="TAFEStudentManagementModel.CourseLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="TAFEStudentManagementModel.CourseSemester" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TAFEStudentManagementModel.vw_StudentDetails" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TAFEStudentManagementModel.vw_TeacherDetails" Width="1.5" PointX="0.75" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
